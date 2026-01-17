@@ -121,6 +121,16 @@ void IntList::push_back(int value) {
 	}
 	tail = newNode;
 // IMPLEMENT
+}
+
+void IntList::clear(){
+	while(head){
+		Node* temp = head->next;
+		delete head;
+		head = temp;
+	}
+	head = nullptr;
+    tail = nullptr;
  
 }
 
@@ -148,15 +158,8 @@ IntList& IntList::operator=(const IntList& source){
     if(this == &source){
 		return *this;
 	}
-	Node* curr = this->head;
-	while(curr){
-		Node* temp = head->next;
-		delete curr;
-		curr = temp;
-	}
-	this->head = nullptr;
-    this->tail = nullptr;
-    curr = source.head;
+	this->clear();
+	Node* curr = source.head;
     while(curr){
 	    push_back(curr->info);
 	    curr = curr->next;
